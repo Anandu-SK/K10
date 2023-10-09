@@ -147,8 +147,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # payment gateway
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51NpqCjSGxsXs2hDLVgxdQXh8l5FL3Bc2cA5oppqmrTPeNKV6i0rJEYaQDUChN1MA4OcaBECpB6MbVBUgODCtqlXt00FHtIKRGq'
-STRIPE_SECRET_KEY = 'sk_test_51NpqCjSGxsXs2hDLzUYuBLTRB7J6XCvicB0zTcHm8l5vmrKecQWwjTd4fMWbEm8F1nkVqkpKKLfSqK3qRt7agk4E00Z7cD8h1i'
+STRIPE_PUBLISHABLE_KEY = ''
+STRIPE_SECRET_KEY = ''
 STRIPE_WEBHOOK_KEY = ''
 
 # OTP generation and verification
@@ -166,5 +166,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'falcon952698@gmail.com'  # Replace with your Gmail email address
-EMAIL_HOST_PASSWORD = 'rfmb jbnj ugds jvof'     # Replace with your Gmail password or an app-specific password
+EMAIL_HOST_USER = ''  # Replace with your Gmail email address
+EMAIL_HOST_PASSWORD = ''     # Replace with your Gmail password or an app-specific password
