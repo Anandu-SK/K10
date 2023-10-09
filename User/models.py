@@ -1,7 +1,4 @@
 from django.db import models
-from django_otp.plugins.otp_email.models import EmailDevice
-from django.contrib.auth import get_user_model
-from django.conf import settings
 
 from Admin.models import *
 

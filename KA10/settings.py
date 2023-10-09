@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Admin',
     'User',
-    'sass_processor',
-    'django_otp',
-    'django_otp.plugins.otp_email'
 ]
 
 MIDDLEWARE = [
