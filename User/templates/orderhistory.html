@@ -1,0 +1,48 @@
+{% extends 'userindex.html' %}
+{% load static %}
+
+{% block searchbar %}
+
+{% endblock %}
+
+
+{% block featured_products %}
+
+{% endblock %}
+
+
+{% block latest_product_section %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <main class="pagecontent" style="display: grid; grid-template-columns: repeat(2, minmax(130px, 1fr)); gap: 13px; margin-left: -150px; padding-left: 200px; margin-bottom: 50px; padding-top: 40px;">
+        {% for i in order_history %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{i.productid.pImage.url}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" >
+                <h5 class="card-title">{{i.productid.pName}}</h5>
+                {% if i.status == 0 %}
+                <p class="card-text" style="color: rgb(161, 97, 13)">Order Pending</p>
+                {% elif i.status == 1 %}
+                <p class="card-text" style="color: rgb(13, 164, 239)">Order Confirmed</p>
+                {% else %}
+                <p class="card-text" style="color: rgb(32, 188, 115);">Order Delivered</p>
+                {% endif %}
+                <p class="card-text"><small class="text-muted">Ordered-Date: {{i.orderdate}}</small></p>
+                <p class="card-text"><small class="text-muted">Quantity: {{i.orderquantity}}</small></p>
+                <p class="card-text"><small class="text-muted">Total: {{i.total}}</small></p>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'adminindex.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<header style="font-weight: bolder; font-size: 22px;">BOOKINGS</header>
+<br>
+<div class="col-lg-12" >
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Bookings</h5>
+        <div class="table-responsive" style="overflow-y: scroll; max-height: 500px;">
+        <table class="table table-bordered">
+          <thead>
+            <tr style="text-align: center;">
+              <th scope="col">Sl.no</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Total</th>
+              <th>Approve</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in orderhistory %}
+            <tr style="text-align: center;">
+              <th>{{forloop.counter}}</th>
+              <th>{{i.orderdate}}</th>
+              <td>{{i.userid.uname}}</td>
+              <td>{{i.userid.uphonenumber}}</td>
+              <td>{{i.productid.pName}}</td>
+              <td>{{i.productid.pCategory.cName}}</td>
+              <td>{{i.orderquantity}}</td>
+              <td>{{i.productid.pPrice}}</td>
+              <td>{{i.each_product_total}}</td>
+              {% if i.status == 2 %}
+                <td>Order Delivered</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+</div><!--End Row-->
+
+{% endblock %}

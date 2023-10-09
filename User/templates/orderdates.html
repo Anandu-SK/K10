@@ -1,0 +1,42 @@
+{% extends 'userindex.html' %}
+{% load static %}
+
+{% block searchbar %}
+
+{% endblock %}
+
+
+{% block featured_products %}
+
+{% endblock %}
+
+
+{% block latest_product_section %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <main class="pagecontent" style="display: grid; grid-template-columns: repeat(2, minmax(130px, 1fr)); gap: 13px; margin-left: -150px; padding-left: 200px; margin-bottom: 50px; padding-top: 40px;">
+        {% for date in unique_dates %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+            <div class="col-md-4">
+                <i class="fa fa-shopping-cart" style="font-size: 100px; margin-left: 20px; color: rgba(0,0,0,0.2); margin-top: 7px;"></i>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body" >
+                    <p style="color: black;">{{date}}</p>
+                    <a href="{% url 'orderhistory' date %}"><button class="btn btn-outline-danger">VIEW DETAILS</button></a>
+                    <a href="{% url 'invoice' date %}"><button class="btn btn-outline-danger">RECEIPT</button></a>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </main>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'adminindex.html' %}
+
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+{% for i in categoryindividualview %}
+<form action="{% url 'categoryupdate' i.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        
+        <div class="container" style="margin-top: 100px; background: rgba(0,0,0,0.5); max-width: 1000px;">
+            <h3>Product Category</h3>
+            <div class="form-outline" style="padding-top: 100px; padding-bottom: 50px;">
+                <label class="form-label" for="form3Example8">Product Name</label>
+                <input type="text" id="form3Example8" class="form-control form-control-lg" name="cname" style="background-color: rgba(0,0,0,0.5); color: white;" value="{{i.cName}}"/>
+            </div>
+            <div class="form-outline" style="margin-bottom: 120px;">
+                <label>Product Image</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <img src="{{i.cImage.url}}" alt="" style="height: 60px; width: 60px; margin-top: 112px;">
+                    <input type="file" class="custom-file-input" id="image" name="cimage" style="background-color: rgba(0,0,0,0.5); color: white;"/>
+                    <label class="custom-file-label" style="background-color: rgba(0,0,0,0.5); color: white;" for="image">Choose file</label>
+                  </div>
+                </div>
+            </div>
+    
+            <div class="d-flex justify-content-end pt-3"style="padding-top: 200px; padding-bottom: 200px">
+                <button type="submit" class="btn btn-outline-info btn-lg ms-2" style="margin-top: -47px;">Submit</button>
+            </div>
+        </div>
+        {% endfor %}
+        
+</form>
+{% endblock %}
+
+
+{% block footer %}
+
+<div >
+    <footer class="footer" style="margin-bottom:-450px;">
+        <div class="container" >
+        <div class="text-center">Copyright © 2023 Dashtreme Admin</div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

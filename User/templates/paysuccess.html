@@ -1,0 +1,62 @@
+{% extends 'userindex.html' %}
+{% load static %}
+
+{% block searchbar %}
+
+{% endblock %}
+
+
+{% block featured_products %}
+
+{% endblock %}
+
+
+{% block latest_product_section %}
+
+{% endblock %}
+
+{% block body %}
+    <body >
+        <div style="text-align: center; padding: 40px 0; background-image: url({% static 'img/cart/cart.jpg' %}); background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="card" style="background:rgb(0, 0, 0, 0.5); padding: 60px; border-radius: 50px;box-shadow: 0 2px 3px #C8D0D8;display: inline-block;margin-top: 50px; padding-top: 0px;padding-bottom: 0px;">
+            <div style="border-radius:200px; height:200px; width:200px; margin:0 auto;">
+                <i class="checkmark" style="color: #9ABC66;font-size: 100px;line-height: 200px; margin-left:-15px;">✓</i>
+            </div>
+                <h1   style="color: #88B04B;font-family: "Nunito Sans", "Helvetica Neue", sans-serif;font-weight: 900;font-size: 40px;margin-bottom: 10px;">Success</h1> 
+                <h2 style="color:rgb(255, 255, 255)">Status:Pending</h2>
+                <p style="color: rgb(255, 255, 255); font-weight:bolder;">Thank You {{request.session.ufname}} {{request.session.ulname}}</p>
+                
+                <p style=" margin-bottom: 20px; color:rgb(255, 255, 255)">We received your booking request for;</p>
+                <p style="color: rgb(255, 255, 255);">we'll be in touch shortly!</p>
+                <p style="color:rgb(255, 255, 255); padding-bottom: 120px;">Redirecting in <span id="countdown" style="color:rgb(255, 255, 255)">5</span> seconds...</p>
+            </div>
+        </div>
+    </body>
+    <script>
+
+      let countdownValue = 5;
+
+      function Updatecountdown(){
+
+      let countdowndecrement = document.getElementById('countdown');
+
+      countdowndecrement.textContent = countdownValue;
+
+        if (countdownValue <= 0)
+        {
+          window.location.href = "{% url 'userhome' %}";
+        }
+        else{
+
+          countdownValue--;
+          setTimeout(Updatecountdown, 1000);
+
+        }
+      }
+
+      Updatecountdown();
+    </script>
+</html>
+
+
+{% endblock %}

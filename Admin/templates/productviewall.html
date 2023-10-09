@@ -1,0 +1,100 @@
+{% extends 'adminindex.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Category Details</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>Product Price</th>   
+                    <th>Product Category </th>
+                    
+                    <th>Product Quantity</th>                                      
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                {% for i in productall %}
+                <tbody>
+                  <tr id = "row1" style="text-align: center;">
+                     <td>
+                      {{i.id}}
+                     </td>
+                      <td>
+                          {{i.pName}}
+                      </td>
+                      <td>
+                         <img src="{{i.pImage.url}}" style="height:50px;width:50px;">
+                      </td>
+
+                      <td>
+                          {{i.pPrice}}
+                      </td>
+                      <td>
+                          {{i.pCategory.cName}}
+                      </td>
+
+                      <td>
+                        {{i.pQuantity}}
+                    </td>
+
+                      <td>
+                        <a href="{% url 'productviewindividual' i.id %}"><button class="btn btn-outline-info"> Edit  </button>
+                        </a>
+                      </td>
+
+                      <td>
+                        <a href="{% url 'productdelete' i.id %}"><button class="btn btn-outline-danger"> Delete </button>
+                        </a>
+                      </td>
+                      
+                  </tr>
+                </tbody>
+                {% endfor %}
+              </table>
+          
+          <!-- /.card -->
+
+        
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock %}
+
+{% block footer %}
+
+<div >
+    <footer class="footer" style="margin-bottom:-450px;">
+        <div class="container" >
+        <div class="text-center">Copyright © 2023 Dashtreme Admin</div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

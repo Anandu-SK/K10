@@ -1,0 +1,46 @@
+{% extends 'adminindex.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<header style="font-weight: bolder; font-size: 22px;">BOOKINGS</header>
+<br>
+<div class="col-lg-12" >
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Bookings</h5>
+        <div class="table-responsive" style="overflow-y: scroll; max-height: 500px;">
+        <table class="table table-bordered">
+          <thead>
+            <tr style="text-align: center;">
+              <th scope="col">Sl.no</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in userlist %}
+            <tr style="text-align: center;">
+              <th>{{forloop.counter}}</th>
+              <th>{{i.uname}}</th>
+              <td>{{i.uemail}}</td>
+              <td>{{i.uphonenumber}}</td>
+              <td>{{i.uaddress}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+  </div>
+</div><!--End Row-->
+
+{% endblock %}

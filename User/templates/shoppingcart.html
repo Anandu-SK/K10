@@ -1,0 +1,166 @@
+{% extends 'userindex.html' %}
+{% load static %}
+
+{% block searchbar %}
+
+{% endblock %}
+
+
+{% block featured_products %}
+
+{% endblock %}
+
+
+{% block latest_product_section %}
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/bannercover.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Shopping Cart</h2>
+                    <div class="breadcrumb__option">
+                        <a href="{% url 'usermainpage' %}">Home</a>
+                        <span>Shopping Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in cartdata %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="{{i.productid.pImage.url}}" alt="" style="width: 50px; height: 50px;">
+                                        <h5>{{i.productid.pName}}</h5>
+                                        <input type="hidden" name="" class="cartid" value="{{i.id}}">
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{i.productid.pPrice}}
+                                        <input type="hidden" name="" id="productprice" value="{{i.productid.pPrice}}">
+                                    </td>
+                                    
+                                    <td class="shoping__cart__quantity">
+                                        
+                                        <div class="quantity">
+                                     
+                                            {% if i.productid.pQuantity < 15 %}
+                                                <input type="number" value="{{i.quantity}}" class="cart_quantity" name = "cart_quantity" max="{{i.productid.pQuantity}}" min="1">
+                                            {% else %}
+                                                <input type="number" value="{{i.quantity}}" class="cart_quantity" name = "cart_quantity" max="15" min="1">
+                                            {% endif %}
+                                        
+                                        </div>
+                                    </td>
+
+                                    <td class="shoping__cart__total">
+                                        {{i.total}}
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <a href="{% url 'shoppingcartdelete' i.id %}"><span class="fa fa-trash"></span></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="{% url 'usermainpage' %}" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Discount Codes</h5>
+                            <form action="#">
+                                <input type="text" placeholder="Enter your coupon code">
+                                <button type="submit" class="site-btn">APPLY COUPON</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>Subtotal <span>₹{{cart_total.total__sum}}</span></li>
+                            <li>Total <span>₹{{cart_total.total__sum}}</span></li>
+                        </ul>
+                        <a href="{% url 'proceedcheck' %}" class="primary-btn">PROCEED TO CHECKOUT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shoping Cart Section End -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".cart_quantity").on('change',function() {
+                event.preventDefault();
+                // Get the row containing the input
+                var row = $(this).closest('tr');
+                var cid = parseInt(row.find(".cartid").val());    
+                var qty = parseInt(row.find(this).val());
+                var price = parseInt(row.find('#productprice').val());
+
+                    location.reload(true)
+                    $.ajax({
+                            url: "{% url 'quantityupdate' %}",
+                            method: 'post',
+                            cache: false,
+                            data: {
+                                cid: cid,
+                                qty: qty,
+                                price: price,
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                                
+                            },
+                            success: function(response) {
+                            if (response.success) {
+                                // Update the total in the current row
+                                var newTotal = price * qty;
+                                row.find('.shoping__cart__total').text(newTotal);
+                                }
+                            }
+                        });
+            });
+        });  
+
+        
+    </script>
+  
+
+               
+                
+
+{% endblock %}

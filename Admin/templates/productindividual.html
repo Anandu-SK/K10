@@ -1,0 +1,106 @@
+{% extends 'adminindex.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<section class="h-100 bg-light">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4" >
+            <div class="row g-0">
+              <div class="col-xl-12">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">Product form</h3>
+
+                  {% for i in individualproduct %} 
+                 <form action="{% url 'productupdate' i.id %}" method="post" enctype="multipart/form-data">
+                  {% endfor %}
+                    {% csrf_token %}
+
+                    {% for i in individualproduct %}
+  
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example8">Product Name</label>
+                        <input type="text" id="form3Example8" class="form-control form-control-lg" name="pname" style="background-color: rgba(0,0,0,0.5); color: white;" value="{{i.pName}}"/>
+                      </div>
+      
+                      <div class="form-outline mb-4">
+                        <label>Product Image</label>
+                        <br>
+                        <img src="{{i.pImage.url}}" alt="" style="width: 150px; height: 150px;">
+                        <div class="input-group">
+                          <div class="custom-file">
+                            
+                            <input type="file" class="custom-file-input" id="image" name="pimage" style="background-color: rgba(0,0,0,0.5); color: white;"/>
+                            <label class="custom-file-label" style="background-color: rgba(0,0,0,0.5); color: white;" for="image">Choose file</label>
+                          </div>
+                          <div class="input-group-append">
+                            <span class="input-group-text">Upload</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example99">Price</label>
+                        <input type="text" id="price" class="form-control form-control-lg" name="pprice" style="background-color: rgba(0,0,0,0.5); color: white;" value="{{i.pPrice}}"/>
+                      </div>
+
+                      <div class="form-outline mb-4" style="display: none;">
+                        <label>Product Stock</label>
+                        <input type="text" class="form-control form-control-lg" id="stock" name="stock"  style="background-color: rgba(0,0,0,0.5); color: white;" >
+                    </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example99" required>Select Catgeory</label>
+                        <select class="form-control form-control-lg"  name="pcategory" style="background-color: rgba(0,0,0,0.5); color: white;" required>
+                          {% for i in category %}
+
+                          <option value="{{i.id}}">{{i.cName}}</option>
+
+                          {% endfor %}
+                          
+                          
+                        </select>
+                      </div>
+
+                      
+                    <div class="row" >
+                        <div class="form-outline col-md-6">
+                            <label class="form-label" for="form3Example99">Quantity</label>
+                            <input type="text" id="quantity" class="form-control form-control-lg" name="pquantity" style="background-color: rgba(0,0,0,0.5); color: white;" value="{{i.pQuantity}}"/>
+                        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                    </div>
+                    <div class="d-flex justify-content-end pt-3">
+                      <button type="submit" class="btn btn-outline-info btn-lg ms-2">Submit form</button>
+                    </div>
+                  {% endfor %}
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+
+
+{% block footer %}
+
+<div >
+    <footer class="footer" style="margin-bottom:-450px;">
+        <div class="container" >
+        <div class="text-center">Copyright © 2023 Dashtreme Admin</div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

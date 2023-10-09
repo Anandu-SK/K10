@@ -1,0 +1,37 @@
+{% extends 'userindex.html' %}
+
+{% block searchbar %}
+
+{% endblock %}
+
+
+{% block featured_products %}
+
+{% endblock %}
+
+
+{% block latest_product_section %}
+
+{% endblock %}
+
+{% block body %}
+
+<h1 style="font-weight: bold; font-family: 'Times New Roman', Times, serif; margin-left: 700px;">Menu</h1>
+
+<div class="container">
+    <main class="pagecontent" style="display: grid; grid-template-columns: repeat(5, minmax(100px, 1fr)); gap: 220px; margin-left: -150px; padding-left: 200px; margin-bottom: 50px;">
+        <!-- Repeat the following card structure 5 times -->
+        {% for  i in data %}
+        <a href="{% url 'usercategorywiseproducts' i.id %}"><div class="" style="width: 15rem; margin-top: 50px; margin-bottom: 50px; max-height: 500px;">
+            <img src="{{ i.cImage.url }}" class="card-img-top" alt="..." style="object-fit: cover; max-height: 220px; min-height: 10px;">
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center; font-weight: bold; font-family: 'Times New Roman', Times, serif;">{{i.cName}}</h5>
+            </div>
+        </div></a>
+        {% endfor %}
+    </main>
+</div>
+
+
+
+{% endblock %}

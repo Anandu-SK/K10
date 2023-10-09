@@ -1,0 +1,112 @@
+{% extends 'adminindex.html' %}
+
+{% block sidebar %}
+
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="card mt-3">
+    <div class="card-content">
+      <div class="row row-group m-0">
+        <div class="col-12 col-lg-6 col-xl-3 border-light">
+          <div class="card-body">
+            <h5 class="text-white mb-0">
+              <a href="{% url 'registeredusers' %}">{{customercount}}</a>
+              <span class="float-right"
+                ><i class="fa fa-user"></i
+              ></span>
+            </h5>
+            <div class="progress my-3" style="height: 3px">
+              <div class="progress-bar" style="width: 55%"></div>
+            </div>
+            <p class="mb-0 text-white small-font">
+              Customers
+              
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 border-light">
+          <div class="card-body">
+            <h5 class="text-white mb-0">
+              <a href="{% url 'userfeedbacklist' %}">{{feddbackcount}}</a>
+              <span class="float-right"><i class="fa fa-comment"></i></span>
+            </h5>
+            <div class="progress my-3" style="height: 3px">
+              <div class="progress-bar" style="width: 55%"></div>
+            </div>
+            <p class="mb-0 text-white small-font">
+              Total Feedbacks
+              
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 border-light">
+          <div class="card-body">
+            <h5 class="text-white mb-0">
+              <a href="{% url 'productviews' %}">{{productscount}}</a>
+              <span class="float-right"><i class="fa fa-eye"></i></span>
+            </h5>
+            <div class="progress my-3" style="height: 3px">
+              <div class="progress-bar" style="width: 55%"></div>
+            </div>
+            <p class="mb-0 text-white small-font">
+              Products
+              
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 border-light">
+          <div class="card-body">
+            <h5 class="text-white mb-0">
+              <a href="{% url 'orderrequests' %}">{{orderconfirmedcount}}</a>
+              <span class="float-right"
+              ><i class="fa fa-shopping-cart"></i
+            ></span>
+            </h5>
+            <div class="progress my-3" style="height: 3px">
+              <div class="progress-bar" style="width: 55%"></div>
+            </div>
+            <p class="mb-0 text-white small-font">
+              Orders Confirmed
+              
+            </p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-3 border-light">
+          <div class="card-body">
+            <h5 class="text-white mb-0">
+              <a href="{% url 'orderhistoryadmin' %}">{{orderdeliveredcount}}</a>
+              <span class="float-right"
+              ><i class="fa fa-shopping-cart"></i
+            ></span>
+            </h5>
+            <div class="progress my-3" style="height: 3px">
+              <div class="progress-bar" style="width: 55%"></div>
+            </div>
+            <p class="mb-0 text-white small-font">
+              Orders Delivered
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block footer %}
+
+<div >
+    <footer class="footer" style="margin-bottom:-450px;">
+        <div class="container" >
+        <div class="text-center">Copyright © 2023 Dashtreme Admin</div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}
