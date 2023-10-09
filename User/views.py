@@ -44,7 +44,7 @@ def userhome(request):
         categorydata = Productcategory.objects.all()
         return render(request, 'userhome.html', {'cart_count':cart_count, 'cart_total':cart_total, 'wishlist_count':wishlist_count, 'categorydata':categorydata})
     else:
-        return('userlogin')
+        return redirect('userlogin')
 
 def userhomepage(request):
     return render(request, 'userhome.html')
