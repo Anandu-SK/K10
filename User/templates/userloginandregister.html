@@ -319,16 +319,41 @@ input {
 
 .cont.s--signup .sign-up {
     -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); 
 }
+
+
+.logo {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.logo a {
+  display: block;
+}
+
+.logo img {
+  width: 150px;
+  border: 1px solid;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+  .logo img {
+    width: 100px;
+  }
+}
+
+
 
 </style>
 
 <div class="logo">
     {% if 'u_id' in request.session %}
-    <a href="{% url 'userhome' %}"><img src="{% static 'img/logo3loginpage.png' %}" alt="" style="border: solid 1px; width: 150px; margin-left: 690px; margin-top: 18px;"></a>
+    <a href="{% url 'userhome' %}"><img src="{% static 'img/logo3loginpage.png' %}" alt="" style="border: solid 1px; width: 150px; margin-top: 18px;"></a>
     {% else %}
-    <a href="{% url 'userhomepage' %}"><img src="{% static 'img/logo3loginpage.png' %}" alt="" style="border: solid 1px; width: 150px; margin-left: 690px; margin-top: 18px;"></a>
+    <a href="{% url 'userhomepage' %}"><img src="{% static 'img/logo3loginpage.png' %}" alt="" style="border: solid 1px; width: 150px;margin-top: 18px;"></a>
     {% endif %}
 </div>
 

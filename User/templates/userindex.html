@@ -39,45 +39,47 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
       <div class="humberger__menu__logo">
-        <a href="#"><img src="{% static 'img/logo.png' %}" alt="" /></a>
+        <a href="#"><img src="{% static 'img/logo3.png' %}" alt="" /></a>
       </div>
       <div class="humberger__menu__cart">
         <ul>
+          {% if 'u_id' in request.session %}
           <li>
-            <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
+            <h5>Hi, {{request.session.username}}</h5>
           </li>
-          <li>
-            <a href="#"><i class="fa fa-shopping-cart"></i> <span>3</span></a>
-          </li>
+          {% endif %}
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
-      </div>
-      <div class="humberger__menu__widget">
-        <div class="header__top__right__language">
-          <img src="{% static 'img/language.png' %}" alt="" />
-          <div>English</div>
-          <span class="arrow_carrot-down"></span>
-          <ul>
-            <li><a href="#">Spanis</a></li>
-            <li><a href="#">English</a></li>
-          </ul>
-        </div>
-        <div class="header__top__right__auth">
-          <a href="#"><i class="fa fa-user"></i> Login</a>
-        </div>
       </div>
       <nav class="humberger__menu__nav mobile-menu">
         <ul>
-          <li class="active"><a href="./index.html">Home</a></li>
+          {% if 'u_id' in request.session %}
+          <li class=""><a href="{% url 'userhome' %}">Home</a></li>
           <li><a href="{% url 'usermainpage' %}">Menu</a>
-            <ul class="header__menu__dropdown">
+            <ul class="header__menu__dropdown" style="top: 23px;">
                 {% for i in categorydata %}
-                  <li><a href=""></a></li>
+                  <li><a href="{% url 'usercategorywiseproducts' i.id %}">{{i.cName}}</a></li>
                 {% endfor %}
             </ul>
+            <li>Account
+              <ul class="header__menu__dropdown" style="top: 23px;">
+                <li><a href="{% url 'uniquedate' %}">order history</a></li>
+                <li><a href="{% url 'userprofile' %}">Profile</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'userlogout' %}"><i class="fa fa-user"></i>Logout</a></li>
         </li>
-          <li><a href="./blog.html">Blog</a></li>
-          <li><a href="./contact.html">Contact</a></li>
+        {% else %}
+        <li class=""><a href="{% url 'userhomepage' %}">Home</a></li>
+        <li><a href="">Account</a>
+          <ul class="header__menu__dropdown">
+            <li><a href="{% url 'aboutus' %}">About Us</a></li>
+            <li><a href="{% url 'userfeedback' %}">Contact</a></li>
+            <li><a href="{% url 'userlogin' %}#register">Register</a></li>
+          </ul>
+        </li>
+          <li><a href="{% url 'userlogin' %}"><i class="fa fa-user"></i>Login</a></li>
+        </li>
+        {% endif %}
         </ul>
       </nav>
       <div id="mobile-menu-wrap"></div>
@@ -86,12 +88,6 @@
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-pinterest-p"></i></a>
-      </div>
-      <div class="humberger__menu__contact">
-        <ul>
-          <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-          <li>Free Shipping for all Order of $99</li>
-        </ul>
       </div>
     </div>
     <!-- Humberger End -->
@@ -152,6 +148,7 @@
                 <li><a href="{% url 'userlogin' %}"><i class="fa fa-user"></i>Login</a></li>
               </li>
               {% endif %}
+              </ul>
             </nav>
           </div>
           <div class="col-lg-3">

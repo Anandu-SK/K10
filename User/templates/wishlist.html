@@ -16,6 +16,45 @@
 {% endblock %}
 
 {% block body %}
+
+<style>
+
+.product__discount__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    padding: 10px; 
+    border: 1px solid #e0e0e0; 
+    margin: 10px; 
+}
+
+.product__discount__item__pic {
+    height: 280px;
+    width: 200px;
+} 
+
+.product__item__pic__hover {
+    list-style: none; 
+}
+
+.product__discount__item__text {
+    padding: 10px;
+    
+}
+
+
+@media screen and (max-width: 468px) {
+    .product__discount__item__pic {
+        height: auto;
+        width: 100%; 
+        display: block;
+    }
+}
+
+
+</style>
+
 <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{% static 'img/bannercover.jpg' %}">
         <div class="container">
@@ -49,21 +88,19 @@
                             
                             {% for i in wishlistdata %}
                             <div class="col-lg-4">
-                             <form action="{% url 'carticon' i.productid.id %}" method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
+                                <form action="{% url 'carticon' i.productid.id %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                     <div class="product__discount__item">
-                                        <div class="product__discount__item__pic set-bg"
-                                            data-setbg="{{i.productid.pImage.url}}" style="height: 280px; width: 200px;">
-                                            
+                                        <div class="product__discount__item__pic set-bg" data-setbg="{{i.productid.pImage.url}}">
                                             <ul class="product__item__pic__hover">
                                                 {% if i.productid.pQuantity == 0 %}
-                                                <h5 style="color: brown;"> OUT OF STOCK </h5>
+                                                <h5 style="color: brown;">OUT OF STOCK</h5>
                                                 {% else %}
                                                 <li><a href="{% url 'carttotal' %}"><button type="submit" class="btn btn-outline"><i class="fa fa-shopping-cart"></i></button></a></li>
                                                 {% endif %}
                                             </ul>
                                         </div>
-                                        <div class="product__discount__item__text" style="padding-right: 50px;">
+                                        <div class="product__discount__item__text">
                                             <span>{{i.productid.pCategory.cName}}</span>
                                             <span>{{i.productid.pName}}</span>
                                             <a href="{% url 'wishlistremove' i.productid.id %}" style="color: brown;">REMOVE WISHLIST</a>
@@ -72,6 +109,7 @@
                                     </div>
                                 </form>
                             </div>
+                            
                             {% endfor %}
                         
                     </div>

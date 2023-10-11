@@ -17,6 +17,35 @@
 
 {% block body %}
 
+<style>
+
+    /* CSS for responsiveness */
+@media screen and (max-width: 768px) {
+    .pagecontent {
+        grid-template-columns: 1fr; /* Display as a single column on smaller screens */
+    }
+    
+    .card {
+        max-width: 100%; /* Make cards occupy full width on smaller screens */
+    }
+    
+    .col-md-4 {
+        text-align: center; /* Center the icon */
+    }
+    
+    .col-md-8 {
+        text-align: center; /* Center the content */
+    }
+    
+    .btn {
+        display: block;
+        margin: 10px auto; /* Center the buttons */
+    }
+}
+
+
+</style>
+
 <div class="container">
     <main class="pagecontent" style="display: grid; grid-template-columns: repeat(2, minmax(130px, 1fr)); gap: 13px; margin-left: -150px; padding-left: 200px; margin-bottom: 50px; padding-top: 40px;">
         {% for date in unique_dates %}

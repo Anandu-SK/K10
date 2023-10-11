@@ -16,6 +16,31 @@
 {% endblock %}
 
 {% block body %}
+
+<style>
+
+  
+@media screen and (max-width: 768px) {
+    .pagecontent {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        max-width: 100%; 
+    }
+    
+    .col-md-4 {
+        text-align: center; 
+    }
+    
+    .col-md-8 {
+        text-align: center;
+    }
+}
+
+
+</style>
+
 <div class="container">
     <main class="pagecontent" style="display: grid; grid-template-columns: repeat(2, minmax(130px, 1fr)); gap: 13px; margin-left: -150px; padding-left: 200px; margin-bottom: 50px; padding-top: 40px;">
         {% for i in order_history %}

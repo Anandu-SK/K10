@@ -291,7 +291,7 @@ def ordercheckout(request):
             for i in cdata:
                 cartlist.append(i.total)
             cartlist_length = len(cartlist)
-            if Order.objects.filter(orderdate = current_date).exists():
+            if Order.objects.filter(userid = user_id,orderdate = current_date).exists():
                 messages.warning(request,"You cannot order more than once a day. Comeback again tomorrow. Thank you")
                 return redirect('proceedcheck')
             else:
@@ -442,7 +442,6 @@ def send_otp_email(request, uEmail, otp):
         last_otp_sent_time = datetime.strptime(last_otp_sent_time_str, '%Y-%m-%d %H:%M:%S.%f%z')
         elapsed_time = timezone.now() - last_otp_sent_time
         if  elapsed_time < timedelta(seconds=20):
-        # Inform the user that they need to wait before requesting another OTP
             messages.success(request,'Please wait before requesting for a new OTP')
             return redirect('resetpassword')
         else:
